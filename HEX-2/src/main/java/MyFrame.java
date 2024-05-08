@@ -155,7 +155,7 @@ public class MyFrame extends JFrame{
 
         frame.add(PanelForInfoCreator.panelForInfoCreator(), GridBagConstruct.gridBagConstruct(0, 1, 0, 0, 2, 1));
 
-        frame.add(GetjPanel.getjPanel(), GridBagConstruct.gridBagConstruct(0, 0, 1, 2, 1, 3));
+        frame.add(GetJPanel.getJPanel(), GridBagConstruct.gridBagConstruct(0, 0, 1, 2, 1, 3));
 
         clipboardData = new ArrayList<>();
 

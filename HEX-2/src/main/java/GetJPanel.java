@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class GetjPanel {
-    public static JPanel getjPanel() {
-        MyFrame.buttonPanel = new JPanel();
+public class GetJPanel {
 
+    public static JPanel getJPanel() {
+        MyFrame.buttonPanel = new JPanel();
         MyFrame.buttonPanel.setLayout(new GridBagLayout());
         GridBagConstraints constraintsForButtons = new GridBagConstraints();
         constraintsForButtons.insets = new Insets(0, 2, 0, 2);
@@ -42,7 +42,7 @@ public class GetjPanel {
         MyFrame.buttonPanel.add(addRow, constraintsForButtons);
 
 
-        MyFrame.buttonPanel.setPreferredSize(new Dimension(550, 80));
+        MyFrame.buttonPanel.setPreferredSize(new Dimension(650, 80));
         return MyFrame.buttonPanel;
     }
 }

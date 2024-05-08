@@ -8,7 +8,6 @@ public class PanelForInfoCreator {
         MyFrame.panelForInfo = new JPanel();
         MyFrame.panelForInfo.setLayout(new GridBagLayout());
         MyFrame.panelForInfo.setPreferredSize(new Dimension(300, 300));
-
         JTextField type = new JTextField("Type");
         JTextField signed = new JTextField("Signed");
         JTextField unsigned = new JTextField("Unsigned");
