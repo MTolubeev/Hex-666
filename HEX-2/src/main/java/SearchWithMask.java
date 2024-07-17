@@ -21,8 +21,8 @@ public class SearchWithMask {
         }
         if ( MyFrame.rows.isEmpty()) SearchHexWithMask.searchHexWithMask(searchText);
         else {
-            MyFrame.table.setRowSelectionInterval( MyFrame.rows.getFirst(),  MyFrame.rows.getFirst());
-            MyFrame.table.setColumnSelectionInterval( MyFrame.cols.getFirst(),  MyFrame.cols.getFirst());
+            MyFrame.table.setRowSelectionInterval( MyFrame.rows.get(0),  MyFrame.rows.get(0));
+            MyFrame.table.setColumnSelectionInterval( MyFrame.cols.get(0),  MyFrame.cols.get(0));
 
         }
     }

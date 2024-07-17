@@ -1,4 +1,4 @@
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +7,6 @@ class MyFrameTest {
 
     @Test
     void myFrame() {
-        Assert.assertNotNull(MyFrame.myFrame());
+        assertNotNull(MyFrame.myFrame());
     }
 }

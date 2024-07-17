@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 
-public class MyFrame extends JFrame{
+public class MyFrame extends JFrame {
     public static JTable table;
     public static byte[] lineValue;
     public static JScrollPane forTable;
@@ -20,7 +20,7 @@ public class MyFrame extends JFrame{
     public static ArrayList<ArrayList<Object>> clipboardData;
     public static Point point;
     public static JPanel findPanel, panelForTable, panelForInfo, buttonPanel;
-    public static JTextField first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, findText;
+    public static JTextField first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, findText;
 
     public static JFrame myFrame() {
 
@@ -61,8 +61,9 @@ public class MyFrame extends JFrame{
                 // Получение выбранного файла
                 selectedFile = fileChooser.getSelectedFile().getAbsolutePath();
                 // Вызов метода для чтения данных из файла и создания модел таблицы
-
-                model = CreateTableModelFromFile.createTableModelFromFile(selectedFile);
+                new Thread(() -> {
+                    model = CreateTableModelFromFile.createTableModelFromFile(selectedFile);
+                }).start();
                 table = new JTable();
                 table.setModel(model);
 
@@ -89,6 +90,7 @@ public class MyFrame extends JFrame{
                         HexToUnsignedInt64.hexToUnsignedInt64();
                         HexToSignedInt64.hexToSignedInt64();
                         HexToFloat16.hexToFloat16();
+                        HexToDouble.hexToDouble();
                     }
 
                 });
@@ -102,6 +104,8 @@ public class MyFrame extends JFrame{
 
                 panelForTable = new JPanel();
                 panelForTable.setLayout(new GridBagLayout());
+
+
                 GridBagConstraints constraintsForTable = new GridBagConstraints();
                 constraintsForTable.insets = new Insets(10, 5, 10, 5);
                 panelForTable.add(forTable, constraintsForTable);
@@ -128,9 +132,7 @@ public class MyFrame extends JFrame{
                 if (findText.getText().contains(".")) {
 
                     SearchWithMask.searchWithMask(findText.getText());
-                }
-
-                else{
+                } else {
 
                     Search.search(findText.getText());
 
@@ -143,6 +145,8 @@ public class MyFrame extends JFrame{
             findPanel.add(findText, constraintsForFind);
             findPanel.add(nextButton, constraintsForFind);
 
+
+            findPanel.setPreferredSize(new Dimension(300, 80));
             frame.add(findPanel, GridBagConstruct.gridBagConstruct(0, 0, 0, 2, 1, 1));
             frame.revalidate();
 
@@ -160,7 +164,7 @@ public class MyFrame extends JFrame{
         clipboardData = new ArrayList<>();
 
         frame.setJMenuBar(bar);
-        frame.setPreferredSize(new Dimension(1000, 700));
+        frame.setPreferredSize(new Dimension(1200, 700));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

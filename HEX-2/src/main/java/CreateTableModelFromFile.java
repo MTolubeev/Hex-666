@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CreateTableModelFromFile {
+
     public static DefaultTableModel createTableModelFromFile(String filename) {
         MyFrame.model = new DefaultTableModel();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {

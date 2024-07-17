@@ -1,4 +1,5 @@
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +8,7 @@ class FindNextTest {
 
     @Test
     void findNext() {
-        Assert.assertNull(MyFrame.model);
+        assertNull(MyFrame.model);
 
     }
 }

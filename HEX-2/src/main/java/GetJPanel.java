@@ -26,6 +26,11 @@ public class GetJPanel {
                 PasteSelection.pasteSelection());
         MyFrame.buttonPanel.add(pasteButton, constraintsForButtons);
 
+        JButton pasteWithShiftButton = new JButton("paste with shift");
+        pasteWithShiftButton.addActionListener(e ->
+                PasteWithShift.pasteWithShift());
+        MyFrame.buttonPanel.add(pasteWithShiftButton, constraintsForButtons);
+
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
             SaveToFile.saveToFile(MyFrame.selectedFile);
@@ -42,7 +47,7 @@ public class GetJPanel {
         MyFrame.buttonPanel.add(addRow, constraintsForButtons);
 
 
-        MyFrame.buttonPanel.setPreferredSize(new Dimension(650, 80));
+        MyFrame.buttonPanel.setPreferredSize(new Dimension(800, 80));
         return MyFrame.buttonPanel;
     }
 }

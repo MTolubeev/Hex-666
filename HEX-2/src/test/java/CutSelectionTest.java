@@ -1,4 +1,4 @@
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +7,7 @@ class CutSelectionTest {
 
     @Test
     void cutSelection() {
-        Assert.assertNull(MyFrame.model);
+       assertNull(MyFrame.model);
 
     }
 }

@@ -18,8 +18,8 @@ public class SearchHex {
             MyFrame.cols.add(col);
             MyFrame.index = 1;
             if (! MyFrame.rows.isEmpty()) {
-                MyFrame.table.setRowSelectionInterval( MyFrame.rows.getFirst(),  MyFrame.rows.getFirst());
-                MyFrame.table.setColumnSelectionInterval( MyFrame.cols.getFirst(),  MyFrame.cols.getFirst());
+                MyFrame.table.setRowSelectionInterval( MyFrame.rows.get(0),  MyFrame.rows.get(0));
+                MyFrame.table.setColumnSelectionInterval( MyFrame.cols.get(0),  MyFrame.cols.get(0));
             } else
                 JOptionPane.showMessageDialog(null, "No matches in file ", "Error", JOptionPane.ERROR_MESSAGE);
         }

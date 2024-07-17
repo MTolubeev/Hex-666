@@ -1,5 +1,4 @@
-import org.junit.Assert;
-
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ class GridBagConstructTest {
     void gridBagConstruct() {
 
 
-        Assert.assertNotNull(GridBagConstruct.gridBagConstruct(10,10,10,10,10,10));
+        assertNotNull(GridBagConstruct.gridBagConstruct(10,10,10,10,10,10));
 
     }
 }

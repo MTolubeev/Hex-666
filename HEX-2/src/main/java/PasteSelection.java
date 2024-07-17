@@ -8,7 +8,7 @@ public class PasteSelection {
         }
 
         int rowsToAdd = MyFrame.clipboardData.size();
-        int colsToAdd = MyFrame.clipboardData.isEmpty() ? 0 : MyFrame.clipboardData.getFirst().size();
+        int colsToAdd = MyFrame.clipboardData.isEmpty() ? 0 : MyFrame.clipboardData.get(0).size();
 
         int endRow = startRow + rowsToAdd - 1;
         int endCol = startCol + colsToAdd - 1;

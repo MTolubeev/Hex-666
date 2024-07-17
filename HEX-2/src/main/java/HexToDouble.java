@@ -1,7 +1,6 @@
-import java.math.BigInteger;
+public class HexToDouble {
 
-public class HexToUnsignedInt64 {
-    public static void hexToUnsignedInt64() {
+    public static void hexToDouble() {
         String str64 = StringsForInfo.stringsForInfo(64);
         if (str64.isEmpty()) MyFrame.eighth.setText("");
         else {
@@ -14,9 +13,10 @@ public class HexToUnsignedInt64 {
             String byte7 = str64.substring(12, 14);
             String byte8 = str64.substring(14);
             String littleEndianHexStr = byte8 + byte7 + byte6 + byte5 + byte4 + byte3 + byte2 + byte1;
-            BigInteger bigIntVal = new BigInteger(littleEndianHexStr, 16);
+            long longVal = Long.parseLong(littleEndianHexStr, 16);
 
-            MyFrame.eighth.setText(String.valueOf(bigIntVal.longValue()));
+            MyFrame.tenth.setText(String.valueOf(longVal));
         }
+
     }
 }

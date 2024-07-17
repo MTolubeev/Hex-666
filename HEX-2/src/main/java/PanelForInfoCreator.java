@@ -5,9 +5,11 @@ public class PanelForInfoCreator {
     public static JComponent panelForInfoCreator() {
 
 
+
         MyFrame.panelForInfo = new JPanel();
         MyFrame.panelForInfo.setLayout(new GridBagLayout());
-        MyFrame.panelForInfo.setPreferredSize(new Dimension(300, 300));
+        MyFrame.panelForInfo.setPreferredSize(new Dimension(300, 360));
+
         JTextField type = new JTextField("Type");
         JTextField signed = new JTextField("Signed");
         JTextField unsigned = new JTextField("Unsigned");
@@ -66,6 +68,13 @@ public class PanelForInfoCreator {
         MyFrame.ninth = new JTextField("");
         MyFrame.ninth.setEditable(false);
         MyFrame.panelForInfo.add( MyFrame.ninth, GridBagConstruct.gridBagConstruct(0, 0, 1, 5, 1, 2));
+
+        JTextField db = new JTextField("Double");
+        db.setEditable(false);
+        MyFrame.panelForInfo.add(db, GridBagConstruct.gridBagConstruct(0, 0, 0, 6, 1, 1));
+        MyFrame.tenth = new JTextField("");
+        MyFrame.tenth.setEditable(false);
+        MyFrame.panelForInfo.add( MyFrame.tenth, GridBagConstruct.gridBagConstruct(0, 0, 1, 6, 1, 2));
 
         return MyFrame.panelForInfo;
     }

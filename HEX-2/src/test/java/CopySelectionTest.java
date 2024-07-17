@@ -1,4 +1,4 @@
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +7,6 @@ class CopySelectionTest {
 
     @Test
     void copySelection() {
-        Assert.assertNotNull(MyFrame.rows);
+        assertNotNull(MyFrame.rows);
     }
 }

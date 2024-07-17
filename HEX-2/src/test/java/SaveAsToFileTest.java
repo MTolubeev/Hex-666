@@ -1,4 +1,4 @@
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,6 +9,6 @@ class SaveAsToFileTest {
     void saveAsToFile() {
         SaveAsToFile saveAsToFile = new SaveAsToFile();
 
-        Assert.assertNull(MyFrame.model);
+        assertNull(MyFrame.model);
     }
 }
