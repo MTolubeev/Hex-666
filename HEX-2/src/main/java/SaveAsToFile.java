@@ -11,25 +11,30 @@ public class SaveAsToFile {
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-
                 for (int row = 0; row < MyFrame.model.getRowCount(); row++) {
+                    StringBuilder lineBuilder = new StringBuilder();
+
                     for (int col = 0; col < MyFrame.model.getColumnCount(); col++) {
                         Object value = MyFrame.model.getValueAt(row, col);
-                        if (value == null || value == "null") {
-                            writer.write(' ');
+                        if (value == null || value.toString().trim().isEmpty()) {
                             continue;
                         }
+
                         String strValue = value.toString().replaceAll(" ", "");
 
-                        writer.write((char) Integer.parseInt(strValue, 16));
 
+                        char character = (char) Integer.parseInt(strValue, 16);
+                        lineBuilder.append(character);
                     }
-                    writer.newLine();
+
+                    if (lineBuilder.length() > 0) {
+                        writer.write(lineBuilder.toString());
+                        writer.newLine();
+                    }
                 }
-                JOptionPane.showMessageDialog(null, "File saved successfully.");
             } catch (IOException e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error saving file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Ошибка сохранения файла: " + e.getMessage(), "Ошибка", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

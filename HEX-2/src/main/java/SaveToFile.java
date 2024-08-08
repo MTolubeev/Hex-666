@@ -6,24 +6,30 @@ import java.io.IOException;
 public class SaveToFile {
     public static void saveToFile(String ourFile) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ourFile))) {
-
             for (int row = 0; row < MyFrame.model.getRowCount(); row++) {
+                StringBuilder lineBuilder = new StringBuilder();
+
                 for (int col = 0; col < MyFrame.model.getColumnCount(); col++) {
                     Object value = MyFrame.model.getValueAt(row, col);
-                    if (value == null || value == "null") {
-
-                        continue;
+                    if (value == null || value.toString().trim().isEmpty()) {
+                        continue; // Игнорируем null значения
                     }
-                    String strValue = value.toString().replaceAll(" ", "");
 
-                    writer.write((char) Integer.parseInt(strValue, 16));
+                    String strValue = value.toString().replaceAll(" ", ""); // Убираем пробелы
 
+                    // Преобразуем шестнадцатеричное значение в байт и затем в символ
+                    char character = (char) Integer.parseInt(strValue, 16);
+                    lineBuilder.append(character); // Добавляем символ к строке
                 }
-                writer.newLine();
+
+                if (lineBuilder.length() > 0) {
+                    writer.write(lineBuilder.toString()); // Записываем строку в файл
+                    writer.newLine(); // Переход на новую строку
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error saving file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ошибка сохранения файла: " + e.getMessage(), "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

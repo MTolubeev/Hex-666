@@ -58,41 +58,53 @@ public class MyFrame extends JFrame {
             countOfPanels++;
             int result = fileChooser.showOpenDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {
-                // Получение выбранного файла
-                selectedFile = fileChooser.getSelectedFile().getAbsolutePath();
-                // Вызов метода для чтения данных из файла и создания модел таблицы
-                new Thread(() -> {
-                    model = CreateTableModelFromFile.createTableModelFromFile(selectedFile);
-                }).start();
+
+
+                selectedFile = fileChooser.getSelectedFile().getAbsolutePath(); // Укажите путь к вашему файлу
+                CreateTableModelFromFile loader = new CreateTableModelFromFile(selectedFile);
+                model = loader.getModel();
                 table = new JTable();
                 table.setModel(model);
+                table.setDefaultEditor(Object.class, new HexCellEditor());
 
                 hexStr = "";
                 for (int j = 0; j < model.getRowCount(); j++) {
                     for (int i = 0; i < model.getColumnCount(); i++) {
                         if (model.getValueAt(j, i) != null) {
-                            hexStr += (String) model.getValueAt(j, i);
+                            hexStr = hexStr + (String) model.getValueAt(j, i) + " ";
                         }
                     }
                 }
 
+
                 table.addMouseListener(new MouseInputAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        point = e.getPoint();
+                        int row = table.rowAtPoint(e.getPoint());
+                        int column = table.columnAtPoint(e.getPoint());
 
-                        HexToUnsignedInt8.hexToUnsignedInt8();
-                        HexToSignedInt8.hexToSignedInt8();
-                        HexToUnsignedInt16.hexToUnsignedInt16();
-                        HexToSignedInt16.hexToSignedInt16();
-                        HexToUnsignedInt32.hexToUnsignedInt32();
-                        HexToSignedInt32.hexToSignedInt32();
-                        HexToUnsignedInt64.hexToUnsignedInt64();
-                        HexToSignedInt64.hexToSignedInt64();
-                        HexToFloat16.hexToFloat16();
-                        HexToDouble.hexToDouble();
+                        if (row >= 0 && column >= 0) {
+                            if (e.getClickCount() == 2) {
+                                table.editCellAt(row, column);
+                                Component editor = table.getEditorComponent();
+                                if (editor != null) {
+                                    editor.requestFocusInWindow();
+                                }
+                            } else if (e.getClickCount() == 1 && table.getCellEditor() == null) {
+                                point = e.getPoint();
+                                HexToUnsignedInt8.hexToUnsignedInt8();
+                                HexToSignedInt8.hexToSignedInt8();
+                                HexToUnsignedInt16.hexToUnsignedInt16();
+                                HexToSignedInt16.hexToSignedInt16();
+                                HexToUnsignedInt32.hexToUnsignedInt32();
+                                HexToSignedInt32.hexToSignedInt32();
+                                HexToUnsignedInt64.hexToUnsignedInt64();
+                                HexToSignedInt64.hexToSignedInt64();
+                                HexToFloat16.hexToFloat16();
+                                HexToDouble.hexToDouble();
+                            }
+                        }
                     }
-
                 });
                 forTable = new JScrollPane(table);
                 forTable.setPreferredSize(new Dimension(500, 500));
@@ -127,6 +139,7 @@ public class MyFrame extends JFrame {
             findButton = new JButton("FIND");
             nextButton = new JButton("NEXT");
             stringLineValue = new String(lineValue);
+
             findButton.addActionListener(e1 -> {
 
                 if (findText.getText().contains(".")) {

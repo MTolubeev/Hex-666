@@ -11,7 +11,7 @@ public class StringsForInfo {
         } else {
             String st = hexArr[row * 16 + col];
             if (por == 8) return st;
-            if (row * 16 + col + 1 > hexArr.length) {
+            if (row * 16 + col + 1 >= hexArr.length) {
                 return "";
             } else {
                 String st16 = hexArr[row * 16 + col] + hexArr[row * 16 + col + 1];

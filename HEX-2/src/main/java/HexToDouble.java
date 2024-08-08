@@ -2,7 +2,7 @@ public class HexToDouble {
 
     public static void hexToDouble() {
         String str64 = StringsForInfo.stringsForInfo(64);
-        if (str64.isEmpty()) MyFrame.eighth.setText("");
+        if (str64.isEmpty()) MyFrame.tenth.setText("");
         else {
             String byte1 = str64.substring(0, 2);
             String byte2 = str64.substring(2, 4);
