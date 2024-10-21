@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,7 +10,7 @@ public class SearchHexWithMask {
 
         String[] parts = searchText.split("\\.");
         Pattern patWithMaskHex = Pattern.compile(parts[0] + "\\S{2}" + parts[1]);
-        Matcher matWithMaskHex = patWithMaskHex.matcher( MyFrame.hexStr.replaceAll(" ", ""));
+        Matcher matWithMaskHex = patWithMaskHex.matcher(MyFrame.hexStr.replaceAll(" ", ""));
         while (matWithMaskHex.find()) {
             int row = 0, col = matWithMaskHex.start() / 2;
             while (col > 15) {
@@ -20,12 +21,14 @@ public class SearchHexWithMask {
             MyFrame.cols.add(col);
             MyFrame.index = 1;
         }
-        if (! MyFrame.rows.isEmpty()) {
-            MyFrame.table.setRowSelectionInterval( MyFrame.rows.get(0),  MyFrame.rows.get(0));
-            MyFrame.table.setColumnSelectionInterval( MyFrame.cols.get(0),  MyFrame.cols.get(0));
+        if (!MyFrame.rows.isEmpty()) {
+            MyFrame.table.setRowSelectionInterval(MyFrame.rows.get(0), MyFrame.rows.get(0));
+            MyFrame.table.setColumnSelectionInterval(MyFrame.cols.get(0), MyFrame.cols.get(0));
 
         } else {
-            JOptionPane.showMessageDialog(null, "No matches in file ", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "No matches in file ", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }
 }
+

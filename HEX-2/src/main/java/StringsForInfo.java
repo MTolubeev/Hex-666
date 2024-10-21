@@ -1,7 +1,7 @@
 public class StringsForInfo {
     public static String stringsForInfo(int por) {
-        int row =  MyFrame.table.rowAtPoint( MyFrame.point);
-        int col =  MyFrame.table.columnAtPoint( MyFrame.point);
+        int row =  MyFrame.table.rowAtPoint(MyFrame.point);
+        int col =  MyFrame.table.columnAtPoint(MyFrame.point);
 
         String[] hexArr =  MyFrame.hexStr.split(" ");
 

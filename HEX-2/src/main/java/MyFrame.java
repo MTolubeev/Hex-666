@@ -8,9 +8,13 @@ import java.util.regex.Matcher;
 
 
 public class MyFrame extends JFrame {
+
+    public static int order = 0;
+
     public static JTable table;
     public static byte[] lineValue;
     public static JScrollPane forTable;
+
     public static DefaultTableModel model;
     public static ArrayList<Integer> rows = new ArrayList<>(), cols = new ArrayList<>();
     public static int index, countOfPanels = 0;
@@ -19,12 +23,13 @@ public class MyFrame extends JFrame {
     public static JButton findButton, nextButton;
     public static ArrayList<ArrayList<Object>> clipboardData;
     public static Point point;
+    public static JFrame frame;
     public static JPanel findPanel, panelForTable, panelForInfo, buttonPanel;
     public static JTextField first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, findText;
 
     public static JFrame myFrame() {
 
-        JFrame frame = new JFrame();
+      frame = new JFrame();
         frame.setTitle("HEX-editor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GridBagLayout gbl = new GridBagLayout();
@@ -184,5 +189,3 @@ public class MyFrame extends JFrame {
         return frame;
     }
 }
-
-
