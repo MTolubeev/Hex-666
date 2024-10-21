@@ -2,15 +2,22 @@ import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
+import static java.lang.Thread.sleep;
+
 
 public class MyFrame extends JFrame {
+
+    public static int order = 0;
+
     public static JTable table;
     public static byte[] lineValue;
     public static JScrollPane forTable;
+
     public static DefaultTableModel model;
     public static ArrayList<Integer> rows = new ArrayList<>(), cols = new ArrayList<>();
     public static int index, countOfPanels = 0;
@@ -19,12 +26,13 @@ public class MyFrame extends JFrame {
     public static JButton findButton, nextButton;
     public static ArrayList<ArrayList<Object>> clipboardData;
     public static Point point;
+    public static JFrame frame;
     public static JPanel findPanel, panelForTable, panelForInfo, buttonPanel;
     public static JTextField first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth, findText;
 
     public static JFrame myFrame() {
 
-        JFrame frame = new JFrame();
+      frame = new JFrame();
         frame.setTitle("HEX-editor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GridBagLayout gbl = new GridBagLayout();
@@ -67,9 +75,20 @@ public class MyFrame extends JFrame {
                 table.setModel(model);
                 table.setDefaultEditor(Object.class, new HexCellEditor());
 
+
                 hexStr = "";
                 for (int j = 0; j < model.getRowCount(); j++) {
+                    try {
+                        sleep(3);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     for (int i = 0; i < model.getColumnCount(); i++) {
+                        try {
+                            sleep(3);
+                        } catch (InterruptedException ex) {
+                            throw new RuntimeException(ex);
+                        }
                         if (model.getValueAt(j, i) != null) {
                             hexStr = hexStr + (String) model.getValueAt(j, i) + " ";
                         }
@@ -84,13 +103,9 @@ public class MyFrame extends JFrame {
                         int column = table.columnAtPoint(e.getPoint());
 
                         if (row >= 0 && column >= 0) {
-                            if (e.getClickCount() == 2) {
+                            if (!table.isEditing() && e.getClickCount() == 2) {
                                 table.editCellAt(row, column);
-                                Component editor = table.getEditorComponent();
-                                if (editor != null) {
-                                    editor.requestFocusInWindow();
-                                }
-                            } else if (e.getClickCount() == 1 && table.getCellEditor() == null) {
+                            } else if (e.getClickCount() == 1) {
                                 point = e.getPoint();
                                 HexToUnsignedInt8.hexToUnsignedInt8();
                                 HexToSignedInt8.hexToSignedInt8();
@@ -184,5 +199,3 @@ public class MyFrame extends JFrame {
         return frame;
     }
 }
-
-

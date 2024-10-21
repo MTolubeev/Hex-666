@@ -13,9 +13,14 @@ public class HexToDouble {
             String byte7 = str64.substring(12, 14);
             String byte8 = str64.substring(14);
             String littleEndianHexStr = byte8 + byte7 + byte6 + byte5 + byte4 + byte3 + byte2 + byte1;
-            long longVal = Long.parseLong(littleEndianHexStr, 16);
+            try {
 
-            MyFrame.tenth.setText(String.valueOf(longVal));
+                long longVal = Long.parseLong(littleEndianHexStr, 16);
+                MyFrame.tenth.setText(String.valueOf(longVal));
+            } catch (NumberFormatException ex) {
+                MyFrame.tenth.setText("");
+            }
+
         }
 
     }

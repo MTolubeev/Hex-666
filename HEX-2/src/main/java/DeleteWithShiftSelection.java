@@ -12,17 +12,9 @@ public class DeleteWithShiftSelection {
                 count++;
             }
         }
+        int insertIndex = selectedRows[0] * 16 + selectedColumns[0];
+        int shiftAmount = selectedRows.length * selectedColumns.length;
+        ShiftLeft.shiftLeft(insertIndex, shiftAmount);
 
-        // Сдвигаем содержимое ячеек влево
-        for (int i = 0; i < MyFrame.table.getRowCount(); i++) {
-            for (int j = selectedColumns[0]; j < MyFrame.table.getColumnCount(); j++) {
-                if (MyFrame.model.getValueAt(i, j) == null && j + count < MyFrame.table.getColumnCount()) {
-
-                    MyFrame.model.setValueAt(MyFrame.model.getValueAt(i, j + count), i, j);
-                    // Очищаем текущую ячейку
-                    MyFrame.model.setValueAt(null, i, j + count);
-                }
-            }
-        }
     }
 }

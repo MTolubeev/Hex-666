@@ -1,57 +1,20 @@
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.util.EventObject;
+import java.util.regex.Pattern;
 
-public class HexCellEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
-    private JTextField textField;
-    private boolean isEditing = false;
+public class HexCellEditor extends DefaultCellEditor {
+    private static final Pattern HEX_PATTERN = Pattern.compile("^[0-9A-Fa-f]{2}$");
 
     public HexCellEditor() {
-        textField = new JTextField();
-        textField.setHorizontalAlignment(JTextField.CENTER);
-
-        textField.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                String text = textField.getText().trim();
-                if (isValidHex(text)) {
-                    fireEditingStopped();
-                    isEditing = false;
-                } else {
-                    JOptionPane.showMessageDialog(textField, "Введите валидное шестнадцатеричное значение (00 - FF).", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                    textField.setText("");
-                }
-            }
-        });
+        super(new JTextField());
     }
 
     @Override
-    public Object getCellEditorValue() {
-        return textField.getText();
-    }
-
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        textField.setText((String) value);
-        isEditing = true; // Устанавливаем флаг редактирования
-        return textField;
-    }
-
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        textField.setText((String) value);
-        return textField;
-    }
-
-    private boolean isValidHex(String text) {
-        return text.matches("^[0-9A-Fa-f]{2}$");
-    }
-
-    public boolean isCellEditable(EventObject anEvent) {
-        return true;
+    public boolean stopCellEditing() {
+        String value = (String) getCellEditorValue();
+        if (!HEX_PATTERN.matcher(value).matches()) {
+            JOptionPane.showMessageDialog(null, "Некорректный ввод, введите число в пределах (00-FF).");
+            return false;
+        }
+        return super.stopCellEditing();
     }
 }

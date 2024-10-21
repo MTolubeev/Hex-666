@@ -4,8 +4,6 @@ import java.awt.*;
 public class PanelForInfoCreator {
     public static JComponent panelForInfoCreator() {
 
-
-
         MyFrame.panelForInfo = new JPanel();
         MyFrame.panelForInfo.setLayout(new GridBagLayout());
         MyFrame.panelForInfo.setPreferredSize(new Dimension(300, 360));
